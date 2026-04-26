@@ -7,6 +7,10 @@ import wandb
 import hydra
 from omegaconf import DictConfig
 
+
+ROOT_PATH = os.path.abspath(os.path.dirname(__file__))
+
+
 _steps = [
     "download",
     "basic_cleaning",
@@ -50,15 +54,34 @@ def go(config: DictConfig):
             )
 
         if "basic_cleaning" in active_steps:
-            ##################
-            # Implement here #
-            ##################
+            _ = mlflow.run(
+                os.path.join(ROOT_PATH, "src", "basic_cleaning"),
+                "main",
+                env_manager="conda",
+                parameters={
+                    "input_artifact": "sample.csv:v0",
+                    "output_artifact": "cleaned_sample.csv",
+                    "output_type": "clean_sample",
+                    "output_description": "Cleaned sample",
+                    "min_price": config["etl"]["min_price"],
+                    "max_price": config["etl"]["max_price"],
+                },
+            )
             pass
 
         if "data_check" in active_steps:
-            ##################
-            # Implement here #
-            ##################
+
+            _ = mlflow.run(
+                os.path.join(ROOT_PATH, "src", "data_check"),
+                "main",
+                parameters={
+                    "csv": "cleaned_sample.csv:latest",
+                    "ref": "cleaned_sample.csv:reference",
+                    "kl_threshold": config["data_check"]["kl_threshold"],
+                    "min_price": config["etl"]["min_price"],
+                    "max_price": config["etl"]["max_price"],
+                },
+            )
             pass
 
         if "data_split" in active_steps:
