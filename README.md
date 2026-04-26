@@ -8,6 +8,7 @@ In this project you will build such a pipeline.
 
 W&B Project - https://wandb.ai/mrhrem040410-western-governors-university/nyc_airbnb?nw=nwusermrhrem040410
 GITHUB REPO - https://github.com/The-Pidgen/Project-Build-an-ML-Pipeline-Starter.git
+W&B Shared Report - https://wandb.ai/mrhrem040410-western-governors-university/nyc_airbnb/reports/Submission-1-0-3--VmlldzoxNjY3NzkwNg?accessToken=9byjxxbkt05xmmtffeul5ke3rokk3jrptq2ua1vd367so69ywh8ah1hro3hghb11
 
 ## Table of contents
 
